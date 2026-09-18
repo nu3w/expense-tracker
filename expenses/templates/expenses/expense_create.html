@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{ title|default:"Add Expense" }}
+{% endblock %}
+
+
+{% block content %}
+
+<h1>
+    {{ title|default:"Add Expense" }}
+</h1>
+
+
+<div class="section">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+
+        <button type="submit">
+            {% if title %}
+                Update Expense
+            {% else %}
+                Add Expense
+            {% endif %}
+        </button>
+
+    </form>
+
+</div>
+
+
+<div class="section">
+
+    <a
+        href="{% url 'expense_list' %}"
+        class="button"
+    >
+        Back to Expenses
+    </a>
+
+</div>
+
+{% endblock %}

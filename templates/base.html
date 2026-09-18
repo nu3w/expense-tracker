@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+            Expense Tracker
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'expenses/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'dashboard' %}">
+                Dashboard
+            </a>
+
+            <a href="{% url 'expense_list' %}">
+                My Expenses
+            </a>
+
+            <a href="{% url 'expense_create' %}">
+                Add Expense
+            </a>
+
+            <form
+                method="POST"
+                action="{% url 'logout' %}"
+                style="display: inline;"
+            >
+
+                {% csrf_token %}
+
+                <button type="submit">
+                    Logout
+                </button>
+
+            </form>
+
+        {% else %}
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+            <a href="{% url 'register' %}">
+                Register
+            </a>
+
+        {% endif %}
+
+    </nav>
+
+
+    <main class="container">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

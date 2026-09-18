@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<h1>
+    Welcome, {{ user.username }}!
+</h1>
+
+
+<!-- Dashboard summary cards -->
+<div class="cards">
+
+    <div class="card">
+
+        <h3>
+            Total Expenses
+        </h3>
+
+        <div class="number">
+            {{ total_expenses }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Total Spent
+        </h3>
+
+        <div class="number">
+            Rs. {{ total_amount|floatformat:2 }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            Average Expense
+        </h3>
+
+        <div class="number">
+            Rs. {{ average_amount|floatformat:2 }}
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Category spending -->
+<div class="section">
+
+    <h2>
+        Spending by Category
+    </h2>
+
+
+    {% if category_totals %}
+
+        <ul>
+
+            {% for category in category_totals %}
+
+                <li>
+                    {{ category.category__name }}
+                    -
+                    Rs. {{ category.total|floatformat:2 }}
+                </li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>
+            You don't have any expenses yet.
+        </p>
+
+    {% endif %}
+
+</div>
+
+
+<!-- Monthly spending -->
+<div class="section">
+
+    <h2>
+        Monthly Spending
+    </h2>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                This Month
+            </h3>
+
+            <div class="number">
+                Rs. {{ this_month_amount|floatformat:2 }}
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Last Month
+            </h3>
+
+            <div class="number">
+                Rs. {{ last_month_amount|floatformat:2 }}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

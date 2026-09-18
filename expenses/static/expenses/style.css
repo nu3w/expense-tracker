@@ -1,0 +1,353 @@
+/* =========================
+   GENERAL PAGE
+   ========================= */
+
+/* Remove default browser spacing */
+body {
+    margin: 0;
+    padding: 0;
+
+    /* Main font */
+    font-family: Arial, sans-serif;
+
+    /* Page background */
+    background-color: #f4f6f8;
+
+    /* Default text color */
+    color: #333;
+}
+
+
+/* =========================
+   NAVIGATION BAR
+   ========================= */
+
+.navbar {
+    background-color: #222;
+
+    padding: 15px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* Navigation links */
+.navbar a {
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+/* Navigation link hover */
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+
+/* Logout form */
+.navbar form {
+    margin: 0;
+}
+
+
+/* Logout button */
+.navbar button {
+    background-color: transparent;
+
+    color: white;
+
+    padding: 0;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.container {
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 0 20px;
+}
+
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+h1 {
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   DASHBOARD CARDS
+   ========================= */
+
+.cards {
+    display: flex;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+.card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    flex: 1;
+
+    min-width: 200px;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+.card h3 {
+    margin-top: 0;
+
+    color: #666;
+}
+
+
+.card .number {
+    font-size: 28px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button,
+.button {
+    display: inline-block;
+
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background-color: #333;
+
+    color: white;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+/* Button hover */
+button:hover,
+.button:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   FORMS
+   ========================= */
+
+form p {
+    margin-bottom: 15px;
+}
+
+
+label {
+    font-weight: bold;
+
+    display: block;
+
+    margin-bottom: 5px;
+}
+
+
+input,
+select,
+textarea {
+    box-sizing: border-box;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+
+textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+
+/* =========================
+   FILTER FORM
+   ========================= */
+
+.section form {
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   TABLE
+   ========================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background-color: white;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+th,
+td {
+    padding: 14px;
+
+    border-bottom: 1px solid #eee;
+
+    text-align: left;
+}
+
+
+th {
+    background-color: #eee;
+
+    font-weight: bold;
+}
+
+
+/* Table row hover */
+tbody tr:hover {
+    background-color: #f8f8f8;
+}
+
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+    color: #333;
+}
+
+
+td a {
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+td a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   CATEGORY LIST
+   ========================= */
+
+ul {
+    background-color: white;
+
+    padding: 20px 40px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+li {
+    padding: 8px 0;
+}
+
+
+/* =========================
+   PAGINATION
+   ========================= */
+
+.section > a {
+    margin-right: 10px;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+/* This applies when the screen becomes smaller */
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .cards {
+        flex-direction: column;
+    }
+
+
+    table {
+        font-size: 13px;
+    }
+
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+}
