@@ -33,6 +33,15 @@ def dashboard(request):
         .order_by('-total')
     )
     
+    # Convert category data into a simple list that JavaScript can understand
+    chart_data = []
+    
+    for category in category_totals:
+        chart_data.append({
+            'category': category['category__name'],
+            'total': float(category['total']),
+        })
+    
     # Get today's date
     today = date.today()
     
@@ -75,7 +84,8 @@ def dashboard(request):
         'average_amount': average_amount,
         'category_totals': category_totals,
         'this_month_amount': this_month_amount,
-        'last_month_amount': last_month_amount
+        'last_month_amount': last_month_amount,
+        'chart_data': chart_data,
     })
 
 @login_required

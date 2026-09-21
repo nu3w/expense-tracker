@@ -64,6 +64,11 @@
         Spending by Category
     </h2>
 
+    <div class="card chart-container">
+        <canvas id="spendingChart"></canvas>
+        {{ chart_data|json_script:'chart-data' }}
+    </div>
+
 
     {% if category_totals %}
 
@@ -131,5 +136,72 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    // Get the chart data created by Django
+    const chartData = JSON.parse(
+        document.getElementById('chart-data').textContent
+    );
+
+    // Get category names
+    const categories = chartData.map(
+        item => item.category
+    );
+
+    // Get spending amounts
+    const amounts = chartData.map(
+        item => item.total
+    );
+
+    // Find the canvas where the chart will be drawn
+    const canvas = document.getElementById(
+        'spendingChart'
+    );
+
+    // Create the chart
+    new Chart(canvas, {
+
+        // Type of chart
+        type: 'bar',
+
+        data: {
+
+            // Names shown on the x-axis
+            labels: categories,
+
+            datasets: [
+
+                {
+                    // Name of the data
+                    label: 'Spending',
+
+                    // Spending amounts
+                    data: amounts
+                }
+
+            ]
+        },
+
+        options: {
+
+            // Make chart responsive
+            responsive: true,
+
+            // Use the size of the container
+            maintainAspectRatio: false,
+
+            plugins: {
+
+                // Hide the legend
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+</script>
 
 {% endblock %}
