@@ -13,6 +13,12 @@ def dashboard(request):
     # Count the number of expenses
     total_expenses = expenses.count()
     
+    # Get the 4 most recent expenses
+    recent_expenses = expenses.order_by(
+        '-date',
+        '-id'
+    )[:4]
+    
     # Calculate the total amount spent
     total_amount = expenses.aggregate(
         total = Sum('amount')
@@ -86,6 +92,7 @@ def dashboard(request):
         'this_month_amount': this_month_amount,
         'last_month_amount': last_month_amount,
         'chart_data': chart_data,
+        'recent_expenses': recent_expenses,
     })
 
 @login_required
@@ -159,6 +166,20 @@ def expense_list(request):
         'date_from': date_from,
         'date_to': date_to,
         'sort': sort,
+    })
+    
+@login_required
+def expense_detail(request, id):
+    # Find the expense using its ID
+    expense = get_object_or_404(
+        Expense,
+        id=id,
+        user = request.user
+    )
+    
+    # Send the expense to the detail template
+    return render(request, 'expenses/expense_detail.html', {
+        'expense': expense
     })
 
 @login_required

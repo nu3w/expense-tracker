@@ -136,6 +136,90 @@
 
 </div>
 
+<!-- Recent Expenses -->
+<div class="section">
+
+    <h2>
+        Recent Expenses
+    </h2>
+
+    {% if recent_expenses %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Title
+                    </th>
+
+                    <th>
+                        Amount
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Date
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for expense in recent_expenses %}
+
+                    <tr>
+
+                        <td>
+                            {{ expense.title }}
+                        </td>
+
+                        <td>
+                            Rs. {{ expense.amount|floatformat:2 }}
+                        </td>
+
+                        <td>
+                            {{ expense.category.name }}
+                        </td>
+
+                        <td>
+                            {{ expense.date }}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <a
+            href="{% url 'expense_list' %}"
+            class="button"
+        >
+            View All Expenses
+        </a>
+
+    {% else %}
+
+        <p>
+            You don't have any expenses yet.
+        </p>
+
+    {% endif %}
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>

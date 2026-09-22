@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Expense Details
+{% endblock %}
+
+{% block content %}
+
+<h1>Expense Detail</h1>
+
+<div class="card">
+    <h2>
+        {{ expense.title }}
+    </h2>
+
+    <p>
+        <strong>Amount: </strong>
+        Rs. {{ expense.amount|floatformat:2 }}
+    </p>
+
+    <p>
+        <strong>Category: </strong>
+        {{ expense.category.name }}
+    </p>
+
+    <p>
+        <strong>Description: </strong>
+        {% if expense.description %}
+            {{ expense.description }}
+        {% else %}
+            No description provided.
+        {% endif %}
+    </p>
+
+    <p>
+        <strong>Date: </strong>
+        {{ expense.date }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'expense_update' expense.id %}" class="button">Edit Expense</a>
+
+    <a href="{% url 'expense_delete' expense.id %}" class="button">Delete Expense</a>
+
+    <a href="{% url 'expense_list' %}" class="button">Back to Expenses</a>
+</div>
+
+{% endblock %}
