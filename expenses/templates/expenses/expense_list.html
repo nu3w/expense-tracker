@@ -197,6 +197,14 @@
 
                         <td>
 
+                            <a 
+                                href="{% url 'expense_detail' expense.id %}"
+                            >
+                                View
+                            </a>
+
+                            |
+
                             <a
                                 href="{% url 'expense_update' expense.id %}"
                             >
@@ -264,6 +272,12 @@
 
     {% endif %}
 
+</div>
+
+<br>
+
+<div class='add-expense-container'>
+    <a href="{% url 'expense_create' %}" class="button">Add Expense</a>
 </div>
 
 {% endblock %}
