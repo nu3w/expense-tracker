@@ -29,6 +29,12 @@
 
     </form>
 
+    <p>
+        <a href="{% url 'password_reset' %}">
+            Forgot your password?
+        </a>
+    </p>
+
     <hr>
 
         <form method="POST" action="{% provider_login_url 'google' %}">
