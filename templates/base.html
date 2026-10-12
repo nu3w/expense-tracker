@@ -54,6 +54,8 @@
 
             </form>
 
+            <a href="{% url 'profile' %}">My Profile</a>
+
         {% else %}
 
             <a href="{% url 'login' %}">
@@ -70,6 +72,12 @@
 
 
     <main class="container">
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
 
         {% block content %}
         {% endblock %}

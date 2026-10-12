@@ -17,4 +17,23 @@ class RegistrationForm(UserCreationForm):
             )
             
         return email
+
+class ProfileUpdateForm(forms.ModelForm):
+    email = forms.EmailField(required=True)        
+    class Meta:
+        model = User
+        fields = ['username','email']
         
+    def clean_email(self):
+        email = self.cleaned_data['email'].strip().lower()
+        current_email = (self.instance.email or '').lower()
+        
+        # Allow the user to keep their existing email.
+        # Check for duplicates only when changing the email.
+        if email != current_email:
+            if User.objects.filter(email__iexact=email).exists():
+                raise forms.ValidationError(
+                    'An account with this email already exists.'
+                )
+                
+        return email
