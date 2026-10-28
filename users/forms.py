@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -37,3 +38,11 @@ class ProfileUpdateForm(forms.ModelForm):
                 )
                 
         return email
+    
+class ProfilePictureForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['profile_picture']
+        labels  = {
+            'profile_picture': 'Choose Profile Picture'
+        }

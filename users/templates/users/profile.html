@@ -9,23 +9,135 @@
         My Profile
     </h1>
 
-    <div class="card">
-        <p>
-            <strong>Username: </strong>
-            {{ user.username }}
-        </p>
+    <!-- <div class="card">
+        <h2>Profile Picture</h2>
 
-        <p>
-            <strong>Email: </strong>
-            {{ user.email }}
-        </p>
+        {% if profile.profile_picture %}
+            <img 
+                src="{{ profile.profile_picture.url }}" 
+                alt="Profile Picture"
+                width="150"
+                height="150"
+                style="object-fit: cover; border-radius: 50%;"
+            >
+        {% else %}
+            <p>No profile picture uploaded yet.</p>
+        {% endif %}
 
-        <a href="{% url 'edit_profile' %}" class="button">
-            Edit Profile
-        </a>
+        <form 
+            method="POST"
+            action="{% url 'update_profile_picture' %}"
+            enctype="multipart/form-data"
+        >
+            {% csrf_token %}
 
-        <a href="{% url 'password_change' %}" class="button">
-            Change Password
-        </a>
+            <label for="id_profile_picture">
+                Choose a picture: 
+            </label>
+
+            <input 
+                type="file"
+                name="profile_picture"
+                id="id_profile_picture"
+                accept="image/*"
+                required
+            >
+
+            <button type="submit">
+                Upload Picture
+            </button>
+        </form>
+    </div> -->
+
+    
+<div class="profile-avatar-section">
+
+    <div class="profile-avatar-wrapper">
+
+        {% if profile.profile_picture and profile.profile_picture.name %}
+            <img
+                src="{{ profile.profile_picture.url }}"
+                alt="Profile picture"
+                class="profile-avatar"
+            >
+        {% else %}
+            <div class="profile-avatar profile-avatar-placeholder">
+                {{ user.username|first|upper }}
+            </div>
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{% url 'update_profile_picture' %}"
+            enctype="multipart/form-data"
+            id="profile-picture-form"
+        >
+            {% csrf_token %}
+
+            <label
+                for="id_profile_picture"
+                class="profile-picture-upload"
+                title="Change profile picture"
+                aria-label="Change profile picture"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M14 5h-4l-2 3H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-4z"/>
+                    <circle cx="12" cy="13" r="3"/>
+                </svg>
+            </label>
+
+            <input
+                type="file"
+                name="profile_picture"
+                id="id_profile_picture"
+                accept="image/*"
+                hidden
+                required
+            >
+        </form>
+
+    </div>
+
+    <h2>{{ user.username }}</h2>
+    <p>{{ user.email }}</p>
+
+</div>
+
+    <div class="card profile-details-card">
+        <h3>Account Settings</h3>
+
+        <div class="profile-actions">
+            <a href="{% url 'edit_profile' %}" class="button">
+                Edit Profile
+            </a>
+
+            <a href="{% url 'password_change' %}" class="button">
+                Change Password
+            </a>
+
+        </div>
     </div>
 {% endblock %}
+
+
+<script>
+    document
+        .getElementById('id_profile_picture')
+        .addEventListener('change', function () {
+            if (this.files.length > 0) {
+                document
+                    .getElementById('profile-picture-form')
+                    .submit();
+            }
+        });
+</script>

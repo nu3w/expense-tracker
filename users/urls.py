@@ -20,4 +20,5 @@ urlpatterns = [
     # change password
     path('password-change/', PasswordChangeView.as_view(template_name='users/password_change.html',success_url='/users/password-change/done/',),name='password_change'),
     path('password-change/done/', PasswordChangeDoneView.as_view(template_name='users/password_change_done.html',),name='password_change_done',),
+    path('profile/picture/', views.update_profile_picture, name='update_profile_picture'),
 ]
